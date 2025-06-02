@@ -5,9 +5,10 @@ def listar_ingredientes_pizzeria(tipo:str,ingrediente:list[str]):
     tipo: Masa / Salsa o Ingrediente.
     ingrediente: lista con opciones del tipo.
     """
-    print(f"\n\nEn nuestra pizzeria trabajamos con {len(ingrediente)} tipos de {tipo} para tú pizza:")
+    print(f"\nEn nuestra pizzeria trabajamos con {len(ingrediente)} tipos de {tipo} para tú pizza:")
     for i in ingrediente:
         print(i)
+    print()
 
 
 def listar_masa_o_salsa_elegidos(tipo:str,elegida:str):
@@ -59,6 +60,7 @@ def pedir_pizza(masa:str, salsa:str, agregado:list[str]) -> bool:
     """
     se entregan las elecciones del usuario y devuelve el booleano con la respuesta a si se sigue haciendo cambios a la pizza
     """
+    print()
 
     if masa == "":
         print("No ha elegido masa, por defecto se considera Masa Tradicional")
@@ -78,15 +80,17 @@ def pedir_pizza(masa:str, salsa:str, agregado:list[str]) -> bool:
         print("Los ingredientes elegidos son: ")
         for i in agregado:
             print(i)
-    print(f"El tiempo de espera aprox para su pizza es de {20 + 2*len(agregado)}min.")
+    print(f"El tiempo de espera aprox para su pizza es de {20 + 2*len(agregado)} minutos.")
 
     invalido=True
     while invalido:
         respuesta=input("¿Estas seguro que quieres pedir esta pizza? (si/no)")
-        if respuesta.lower() == s or respuesta.lower() == si:
+
+        if respuesta.lower() == "s" or respuesta.lower() == "si":
+            print("Su pedido ha sido enviado, ¡hasta una próxima oportunidad!")
             invalido=False
             duda=False
-        elif respuesta.lower() == n or respuesta.lower() == no:
+        elif respuesta.lower() == "n" or respuesta.lower() == "no":
             invalido=False
             duda=True
         else:
@@ -107,7 +111,7 @@ salsa_elegida = ""
 agregados_elegidos = []
 
 eligiendo=True
-While eligiendo:
+while eligiendo:
 
     print("Elige alguna de las siguientes opciones:")
     print("1.- Conoce los ingredientes de nuestra pizzería.")
@@ -142,7 +146,7 @@ While eligiendo:
         salsa_elegida = modifica_masa_o_salsa("Salsa",salsas)
 
     elif eleccion == 5:
-    
+        continue
     elif eleccion == 6:
         eligiendo=pedir_pizza(masa_elegida, salsa_elegida, agregados_elegidos)
     else:
