@@ -38,15 +38,36 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
         accion = input("\n¿Desea modificar o agregar un ingediente en su pizza? (M/A) [\"S\" para salir]: ")
 
         if accion.upper() == "M" or accion.upper() =="MODIFICAR":
-            modificado = int(input("Ingrese el número de ingrediente en su lista a modificar: "))
-            ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+            error=True
+            while error:
+                modificado = int(input("Ingrese el número de ingrediente en su lista a modificar: "))
+                if modificado > 0 or modificado <= len(agregados)
+                    error = False
+                else: 
+                    print(f"El valor ingresado no corresponde debe ser un valor entre 0 y {len(agregados)}")
+
+            error=True    
+            while error:
+                ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+                if ingrediente_nuevo > 0 or ingrediente_nuevo <= len(ingrediente_nuevo)
+                    error = False
+                else: 
+                    print(f"El valor ingresado no corresponde debe ser un valor entre 0 y {len(agregados)}")
+            
             agregados[modificado - 1] = ingredientes[ingrediente_nuevo -1]
 
 
         elif accion.upper() == "A" or accion.upper() =="AGREGAR":
-            ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+            error=True    
+            while error:
+                ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+                if ingrediente_nuevo > 0 or ingrediente_nuevo <= len(ingrediente_nuevo)
+                    error = False
+                else: 
+                    print(f"El valor ingresado no corresponde debe ser un valor entre 0 y {len(agregados)}")
+            
             agregados.append(ingredientes[ingrediente_nuevo -1])
-            continue;
+
         
         elif accion.upper() == "S" or accion.upper() =="SALIR":
  
