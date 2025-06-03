@@ -3,7 +3,7 @@ from cocina.listar import listar_ingredientes_pizzeria
 from cocina.listar import listar_masa_o_salsa_elegidos
 
 from cocina.modificar import modifica_masa_o_salsa
-#from cocina.modificar import
+from cocina.modificar import modifica_agregado
 
 from cocina.pedir import pedir_pizza
 
@@ -20,18 +20,21 @@ if __name__ == "__main__":
     "Se inicializan variables"
     masa_elegida = ""
     salsa_elegida = ""
-    agregados_elegidos = []
+    agregados_elegidos = ["Tomate", "Aceituna"]
 
     eligiendo=True
     while eligiendo:
 
-        print("Elige alguna de las siguientes opciones:")
-        print("1.- Conoce los ingredientes de nuestra pizzería.")
-        print("2.- Listar ingredientes seleccionados en tú pizza.")
-        print("3.- Elige/cambia la masa de la pizza.")
-        print("4.- Elige/cambia la salsa de la pizza.")
-        print("5.- Elige/cambia los ingredientes en la pizza.")
-        print("6.- Pedir a nuestro equipo la pizza elegida.")
+        print("""\nElige alguna de las siguientes opciones:
+              1.- Conoce los ingredientes de nuestra pizzería.
+              2.- Listar ingredientes seleccionados en tú pizza.
+              3.- Elige/cambia la masa de la pizza.
+              4.- Elige/cambia la salsa de la pizza.
+              5.- Elige/cambia los ingredientes en la pizza.
+              6.- Pedir a nuestro equipo la pizza elegida.
+              7.- Salir del programa.
+            
+              """)
 
         pregunta=True
         while pregunta:
@@ -39,7 +42,7 @@ if __name__ == "__main__":
                 eleccion=int(input("""\nEscribe el número de tu elección """))
                 pregunta=False
             except:
-                print("El valor a ingresar debe ser un número entre 1 y 6 incluyendolos.\n")
+                print("El valor a ingresar debe ser un número entre 1 y 7 incluyendolos.\n")
         
         if eleccion == 1:
             listar_ingredientes_pizzeria('Masas',masas)
@@ -60,8 +63,14 @@ if __name__ == "__main__":
             salsa_elegida = modifica_masa_o_salsa("Salsa",salsas)
 
         elif eleccion == 5:
-            continue
+            masa_elegida = modifica_agregado(agregados_elegidos, agregados)
+
         elif eleccion == 6:
             eligiendo=pedir_pizza(masa_elegida, salsa_elegida, agregados_elegidos)
+
+        elif eleccion == 7:
+            print("Nos vemos para tu próxima pizza, ¡adios!")
+            break;
+
         else:
-            print("La opción no es válida, debe ser un número entre 1 y 6 incluyendolos.\n")
+            print("La opción no es válida, debe ser un número entre 1 y 7 incluyendolos.\n")
