@@ -20,19 +20,19 @@ if __name__ == "__main__":
     "Se inicializan variables"
     masa_elegida = ""
     salsa_elegida = ""
-    agregados_elegidos = ["Tomate", "Aceituna"]
+    agregados_elegidos = []
 
     eligiendo=True
     while eligiendo:
 
         print("""\nElige alguna de las siguientes opciones:
-              1.- Conoce los ingredientes de nuestra pizzería.
-              2.- Listar ingredientes seleccionados en tú pizza.
-              3.- Elige/cambia la masa de la pizza.
-              4.- Elige/cambia la salsa de la pizza.
-              5.- Elige/cambia los ingredientes en la pizza.
-              6.- Pedir a nuestro equipo la pizza elegida.
-              7.- Salir del programa.
+    1.- Conoce los ingredientes de nuestra pizzería.
+    2.- Listar ingredientes seleccionados en tú pizza.
+    3.- Elige/cambia la masa de la pizza.
+    4.- Elige/cambia la salsa de la pizza.
+    5.- Elige/cambia los ingredientes en la pizza.
+    6.- Pedir a nuestro equipo la pizza elegida.
+    7.- Salir del programa.
             
               """)
 
@@ -57,16 +57,28 @@ if __name__ == "__main__":
             print()
 
         elif eleccion == 3:
-            masa_elegida = modifica_masa_o_salsa("Masa",masas)
+            masa_elegida = modifica_masa_o_salsa("Masa",masas,masa_elegida)
 
         elif eleccion == 4:
-            salsa_elegida = modifica_masa_o_salsa("Salsa",salsas)
+            salsa_elegida = modifica_masa_o_salsa("Salsa",salsas,salsa_elegida)
 
         elif eleccion == 5:
             masa_elegida = modifica_agregado(agregados_elegidos, agregados)
 
         elif eleccion == 6:
-            eligiendo=pedir_pizza(masa_elegida, salsa_elegida, agregados_elegidos)
+            opcion=True
+            if masa_elegida=="":
+                print("\nAun debe elegir el tipo de masa")
+                opcion=False
+            if salsa_elegida=="":
+                print("\nAun debe elegir el tipo de salsa")
+                opcion=False
+            if len(agregados_elegidos) == 0:
+                print("\nAun debe elegir los ingredientes")
+                opcion=False
+
+            if opcion:            
+                eligiendo=pedir_pizza(masa_elegida, salsa_elegida, agregados_elegidos)
 
         elif eleccion == 7:
             print("Nos vemos para tu próxima pizza, ¡adios!")

@@ -4,17 +4,10 @@ def pedir_pizza(masa:str, salsa:str, agregado:list[str]) -> bool:
     """
     print()
 
-    if masa == "":
-        print("No ha elegido masa, por defecto se considera \"Masa Tradicional\"")
-        masa = "Masa Tradicional"
-    elif masa != "":
-        print(f"La masa elegida es {masa}")
+    print(f"La masa elegida es {masa}")
 
-    if salsa == "":
-        print("No ha elegido salsa, su pizza se fabricará sin ninguna salsa")
-    elif salsa != "":
-        print(f"La salsa elegida es {salsa}")
-    
+    print(f"La salsa elegida es {salsa}")
+
     print("Los ingredientes elegidos son: ")
     for i in range(len(agregado)):
         print(f"{i+1}.- {agregado[i]}")
