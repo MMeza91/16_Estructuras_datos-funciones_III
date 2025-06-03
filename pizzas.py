@@ -38,6 +38,7 @@ if __name__ == "__main__":
 
         pregunta=True
         while pregunta:
+            #Se evalua que el dato ingresado sea un entero
             try:
                 eleccion=int(input("""\nEscribe el número de tu elección """))
                 pregunta=False
@@ -66,6 +67,8 @@ if __name__ == "__main__":
             masa_elegida = modifica_agregado(agregados_elegidos, agregados)
 
         elif eleccion == 6:
+
+            #Se evalua si las elecciones del usuario están vacias o no
             opcion=True
             if masa_elegida=="":
                 print("\nAun debe elegir el tipo de masa")
@@ -77,6 +80,7 @@ if __name__ == "__main__":
                 print("\nAun debe elegir los ingredientes")
                 opcion=False
 
+            #en caso de que las elecciones estén hechas, se puede pedir la pizza
             if opcion:            
                 eligiendo=pedir_pizza(masa_elegida, salsa_elegida, agregados_elegidos)
 

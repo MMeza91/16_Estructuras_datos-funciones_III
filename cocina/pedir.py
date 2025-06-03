@@ -1,6 +1,6 @@
 def pedir_pizza(masa:str, salsa:str, agregado:list[str]) -> bool:
     """
-    se entregan las elecciones del usuario y devuelve el booleano con la respuesta a si se sigue haciendo cambios a la pizza
+    se entregan las elecciones del usuario y devuelve el booleano con la respuesta a si se sigue haciendo cambios a la pizza o no
     """
     print()
 

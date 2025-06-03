@@ -1,12 +1,25 @@
 
 
 def modifica_masa_o_salsa(tipo:str,ingrediente:list[str], elegido:str) -> str:
+
+    """
+    Permite modificar la salsa o la masa.
+
+    tipo: [str] que determina si es salsa o masa.
+    ingrediente: lista que contiene los ingredientes de la pizzeria.
+    elegido: masa o salsa elegida por el usuario.
+
+    return nueva salsa o masa elegida por usuario.
+    """
     pregunta=True
     while pregunta:
-        respuesta="-"
+        respuesta="-" # se le llena con un valor != vacio
         error=True    
         while error:
-            eleccion  = input(f"\n¿Desea elegir una {tipo} diferente? (S/N): ")
+            try:
+                eleccion  = input(f"\n¿Desea elegir una {tipo} diferente? (S/N): ")
+            except:
+                print("Debe escribir Si o No")
             if eleccion.upper() == "S" or eleccion.upper() == "SI":
                 error = False
             elif eleccion.upper() == "N" or eleccion.upper() == "NO":
@@ -26,12 +39,16 @@ def modifica_masa_o_salsa(tipo:str,ingrediente:list[str], elegido:str) -> str:
 
             error=True    
             while error:
-                respuesta = int(input("\nEscriba el número de su elección por favor: "))
+                
+                try:
+                    respuesta = int(input("\nEscriba el número de su elección por favor: "))
+                except:
+                    print(f"Error!")
 
                 if respuesta > 0 or respuesta <= len(ingrediente):
                     error = False
                 else: 
-                    print(f"El valor ingresado no corresponde debe ser un valor entre 1 y {len(ingrediente)}")
+                    print(f"\nEl valor ingresado no corresponde debe ser un valor entre 1 y {len(ingrediente)}")
             
             for i in range(len(ingrediente)):
                 if respuesta == (i+1):
@@ -66,12 +83,18 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
 
         error=True
         while error:
-            if len(agregados) == 0:
-                accion = input("\n¿Desea agregar [A] un ingediente en su pizza? [\"S\" para salir]: ")
-            else: 
-                accion = input("\n¿Desea modificar [M] o agregar [A] un ingediente en su pizza? [\"S\" para salir]: ")
             
+            try:
+                if len(agregados) == 0:
+                    accion = input("\n¿Desea agregar [A] un ingediente en su pizza? [\"S\" para salir]: ")
+                else: 
+                    accion = input("\n¿Desea modificar [M] o agregar [A] un ingediente en su pizza? [\"S\" para salir]: ")
+            except:
+                print("\nDebe escribir un valor alfabetico")
+
             if accion.upper() == "M" or accion.upper() =="MODIFICAR":
+                if len(agregados) == 0:
+                    break
 
                 error=True
                 while error:
@@ -84,11 +107,15 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
 
                 error=True    
                 while error:
-                    ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+                    #se evalua que el dato ingresado sea un entero y un valor correspondiente a la lista agregados
+                    try:
+                        ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+                    except:
+                        print("Error")
                     if ingrediente_nuevo > 0 and ingrediente_nuevo <= len(ingredientes):
                         error = False
                     else: 
-                        print(f"El valor ingresado no corresponde debe ser un valor entre 1 y {len(agregados)}")
+                        print(f"El valor ingresado no corresponde, debe ser un valor entre 1 y {len(agregados)}")
                 
                 agregados[modificado - 1] = ingredientes[ingrediente_nuevo -1]
 
@@ -96,11 +123,20 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
             elif accion.upper() == "A" or accion.upper() =="AGREGAR":
                 error=True    
                 while error:
-                    ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+                    #se evalua que el dato ingresado sea un entero
+                    try:
+                        ingrediente_nuevo = int(input("Ingrese el número de ingrediente de nuestra tienda a agregar: "))
+                    except:
+                        print("\nEscriba un valor numérico")
+                    #se evalua que el dato sea valido
                     if ingrediente_nuevo > 0 and ingrediente_nuevo <= len(ingredientes):
                         error = False
+                        #en caso de haber ingredientes repetidos en agregados, se vuelve a pedir un ingrediente
+                        if ingredientes[ingrediente_nuevo -1] in agregados:
+                            error = True
+                            print("\nNo puede elegir ingredientes repetidos.")
                     else: 
-                        print(f"El valor ingresado no corresponde debe ser un valor entre 0 y {len(agregados)}")
+                        print(f"\nEl valor ingresado no corresponde debe ser un valor entre 1 y {len(ingredientes)}")
                 
                 agregados.append(ingredientes[ingrediente_nuevo -1])
 
