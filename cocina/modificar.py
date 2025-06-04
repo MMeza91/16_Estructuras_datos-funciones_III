@@ -1,5 +1,3 @@
-
-
 def modifica_masa_o_salsa(tipo:str,ingrediente:list[str], elegido:str) -> str:
 
     """
@@ -17,7 +15,10 @@ def modifica_masa_o_salsa(tipo:str,ingrediente:list[str], elegido:str) -> str:
         error=True    
         while error:
             try:
-                eleccion  = input(f"\n¿Desea elegir una {tipo} diferente? (S/N): ")
+                if elegido == "":
+                    eleccion  = input(f"\n¿Desea elegir una {tipo}? (S/N): ")
+                else:
+                    eleccion  = input(f"\n¿Desea elegir una {tipo} diferente? (S/N): ")
             except:
                 print("Debe escribir Si o No")
             if eleccion.upper() == "S" or eleccion.upper() == "SI":
@@ -60,6 +61,8 @@ def modifica_masa_o_salsa(tipo:str,ingrediente:list[str], elegido:str) -> str:
     return respuesta
 
 
+
+
 def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
 
     """
@@ -88,7 +91,7 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
                 if len(agregados) == 0:
                     accion = input("\n¿Desea agregar [A] un ingediente en su pizza? [\"S\" para salir]: ")
                 else: 
-                    accion = input("\n¿Desea modificar [M] o agregar [A] un ingediente en su pizza? [\"S\" para salir]: ")
+                    accion = input("\n¿Desea modificar [M], agregar [A] o eliminar [E] un ingediente en su pizza? [\"S\" para salir]: ")
             except:
                 print("\nDebe escribir un valor alfabetico")
 
@@ -115,7 +118,7 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
                     if ingrediente_nuevo > 0 and ingrediente_nuevo <= len(ingredientes):
                         error = False
                     else: 
-                        print(f"El valor ingresado no corresponde, debe ser un valor entre 1 y {len(agregados)}")
+                        print(f"El valor ingresado no corresponde, debe ser un valor entre 1 y {len(ingredientes)}")
                 
                 agregados[modificado - 1] = ingredientes[ingrediente_nuevo -1]
 
@@ -140,7 +143,22 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
                 
                 agregados.append(ingredientes[ingrediente_nuevo -1])
 
-            
+            elif accion.upper() == "E" or accion.upper() =="ELIMINAR":
+                if len(agregados) == 0:
+                    break
+
+                #se evalua que el dato ingresado sea un entero y un valor correspondiente a la lista agregados
+                try:
+                    ingrediente_eliminado = int(input("Ingrese el número de ingrediente de sus ingredientes: "))
+                except:
+                    print("Error")
+                if ingrediente_eliminado > 0 and ingrediente_eliminado <= len(agregados):
+                    error = False
+                else: 
+                    print(f"El valor ingresado no corresponde, debe ser un valor entre 1 y {len(agregados)}")
+
+                agregados.pop(ingrediente_eliminado - 1)
+
             elif accion.upper() == "S" or accion.upper() =="SALIR":
                 error = False
                 pregunta = False
@@ -150,6 +168,7 @@ def modifica_agregado(agregados:list[str], ingredientes:list[str]) -> list[str]:
                 print("""\nEl valor ingresado no es válido
     Escriba \"A\" para AGREGAR un nuevo ingrediente
     Escriba \"M\" para MODIGICAR un un ingrediente de la lista (En caso de ya tener ingredientes seleccionados)
+    Escriba \"E\" para ELIMINAR un un ingrediente de la lista (En caso de ya tener ingredientes seleccionados)
     Escriba \"S\" para salir de la sección\n
                   """)
 

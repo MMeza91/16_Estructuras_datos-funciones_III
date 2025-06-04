@@ -30,7 +30,7 @@ if __name__ == "__main__":
     2.- Listar ingredientes seleccionados en tú pizza.
     3.- Elige/cambia la masa de la pizza.
     4.- Elige/cambia la salsa de la pizza.
-    5.- Elige/cambia los ingredientes en la pizza.
+    5.- Elige/cambia/elimina los ingredientes en la pizza.
     6.- Pedir a nuestro equipo la pizza elegida.
     7.- Salir del programa.
             
@@ -64,7 +64,7 @@ if __name__ == "__main__":
             salsa_elegida = modifica_masa_o_salsa("Salsa",salsas,salsa_elegida)
 
         elif eleccion == 5:
-            masa_elegida = modifica_agregado(agregados_elegidos, agregados)
+            agregados_elegidos = modifica_agregado(agregados_elegidos, agregados)
 
         elif eleccion == 6:
 
